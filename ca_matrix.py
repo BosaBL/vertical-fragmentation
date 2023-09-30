@@ -1,6 +1,3 @@
-from affinity import affinity
-
-
 def bond(A: list[int], B: list[int]) -> int:
     total = 0
 
@@ -42,12 +39,19 @@ def ca(affinity_matrix: list[list[int]], atributes: list[int]) -> (list[list[int
 
         ca_matrix.insert(cont_values.index(
             max(cont_values)), atribute_vals)
-        print(ca_atributes)
+    
+    matricita  = [[0 for _ in range(atributes_len)] for _ in range(atributes_len)]
+
+    for num,row in enumerate(ca_matrix):
+        aux = row.copy()
+        for index,value in enumerate(ca_atributes):
+            row[index] = aux[value]
 
     return (ca_matrix, ca_atributes)
 
 
 if __name__ == "__main__":
-    aff = [[45, 0, 45, 0], [0, 80, 5, 75], [45, 5, 53, 3], [0, 75, 3, 78]]
+    aff = affinity([[0,1,1,0], [1,1,1,0],[1,0,0,1],[0,0,1,0]], [[20,5,0],[10,0,15],[0,40,5],[0,20,10]])
     print(aff)
-    print(ca(aff, [1, 2, 3, 4]))
+    for i in ca(aff, [0, 1, 2, 3])[0]:
+        print(i) 
