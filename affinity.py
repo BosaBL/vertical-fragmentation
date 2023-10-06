@@ -1,12 +1,7 @@
-def affinity(use_matrix: list[int], freq_matrix: list[int], access: int = 1, execution: int = 1) -> list[list[int]]:
-    acc_over_execution = access/execution
-
-    freq_sum = [sum(i)*acc_over_execution for i in freq_matrix]
-
+def affinity(use_matrix: list[int], freq_sum: list[int]) -> list[list[int]]:
     attribute_qty = len(use_matrix[0])
 
-    affinity_matrix = [[0 for _ in range(attribute_qty)]
-                       for _ in range(attribute_qty)]
+    affinity_matrix = [[0 for _ in range(attribute_qty)] for _ in range(attribute_qty)]
 
     i = 0
     while i < attribute_qty:
@@ -28,5 +23,8 @@ def affinity(use_matrix: list[int], freq_matrix: list[int], access: int = 1, exe
 
 
 if __name__ == "__main__":
-    for i in (affinity([[0, 1, 1, 0], [1, 1, 1, 0], [1, 0, 0, 1], [0, 0, 1, 0]], [[20, 5, 0], [10, 0, 15], [0, 40, 5], [0, 20, 10]])):
+    for i in affinity(
+        [[0, 1, 1, 0], [1, 1, 1, 0], [1, 0, 0, 1], [0, 0, 1, 0]],
+        [[20, 5, 0], [10, 0, 15], [0, 40, 5], [0, 20, 10]],
+    ):
         print(i)
