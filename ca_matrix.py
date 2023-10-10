@@ -25,7 +25,6 @@ def ca(
 
     for atribute_vals in affinity_matrix:
         cont_values = [float("-inf") for _ in range(atributes_len)]
-        print(ca_atributes)
 
         cont_values[0] = cont(atribute_zero, atribute_vals, ca_matrix[0])
 
@@ -37,15 +36,11 @@ def ca(
         cont_values[len(ca_matrix)] = cont(
             ca_matrix[len(ca_matrix) - 1], atribute_vals, atribute_zero
         )
-
         ca_atributes.insert(cont_values.index(max(cont_values)), atributes.pop(0))
-
         ca_matrix.insert(cont_values.index(max(cont_values)), atribute_vals)
-        print(cont_values)
 
     matricita = [[0 for _ in range(atributes_len)] for _ in range(atributes_len)]
 
-    print("aaaa", ca_matrix)
     for num, row in enumerate(ca_matrix):
         aux = row.copy()
         for index, value in enumerate(ca_atributes):
